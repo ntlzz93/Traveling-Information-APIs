@@ -1,0 +1,35 @@
+{
+  "name": "travelingcity-apis",
+  "version": "1.0.0",
+  "description": "The Traveling City application - apis",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ntlzz93/Traveling-Information-APIs.git"
+  },
+  "keywords": [
+    "rest",
+    "api"
+  ],
+  "author": "loint",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ntlzz93/Traveling-Information-APIs/issues"
+  },
+  "homepage": "https://github.com/ntlzz93/Traveling-Information-APIs#readme",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "connect-flash": "^0.1.1",
+    "ejs": "^2.4.1",
+    "express": "^4.13.4",
+    "express-session": "^1.13.0",
+    "mongoose": "^4.4.12",
+    "passport": "^0.3.2",
+    "passport-facebook": "^2.1.0",
+    "passport-local": "^1.0.0",
+    "passport-twitter": "^1.0.4"
+  }
+}

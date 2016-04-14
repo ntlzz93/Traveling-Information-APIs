@@ -52,6 +52,11 @@ exports.register = function(req, res, next) {
 		var user = new MemberProfile(req.body);
 		var message = null;
 		user.Provider = 'local';
+                user.LoginName = req.body.username;
+                user.Password = req.body.password;
+                user.Email = req.body.email;
+                user.FirstName = req.body.name;
+                
 		user.save(function(err) {
 			if (err) {
 				var message = getErrorMessage(err);

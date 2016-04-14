@@ -7,7 +7,7 @@ There is Apis for website or mobile application about traveling information appl
 Technology use: Nodejs , ExpressJs, Mongodb
 
 ## API Reference
-1. Register
+1. [Register](https://github.com/ntlzz93/Traveling-Information-APIs/blob/master/Register.md)
   * Normal Account
   * Facebook account 
 2. Login

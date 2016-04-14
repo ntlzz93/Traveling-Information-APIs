@@ -1,7 +1,7 @@
 # Traveling-Information-APIs
 
 ## Synopsis
-There is Apis for website or mobile application about traveling information application. The application could posts article on favorite destination, views posts that was shared by other users,  to have interesting vacation.
+There is Apis for website or mobile application about traveling information application. The application could posts an article on favorite destination, view posts that was shared by other users,  to have interesting vacation.
 
 ## About
 Technology use: Nodejs , ExpressJs, Mongodb

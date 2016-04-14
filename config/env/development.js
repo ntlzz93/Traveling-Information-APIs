@@ -2,10 +2,10 @@ var port = 1337;
 
 module.exports = {
 	port: port,
-	db: 'mongodb://localhost/todos',
+	db: 'mongodb://localhost/travincity',
 	facebook: {
-		clientID: '1388823167810501',
-		clientSecret: 'd2ad2f8d8629d5efab405cfe84ae4e12',
+		clientID: '1781528908733909',
+		clientSecret: 'a21da21f705b1d68d24b5c1a72d20279',
 		callbackURL: 'http://localhost:'+ port +'/oauth/facebook/callback'
 	},
 	twitter: {

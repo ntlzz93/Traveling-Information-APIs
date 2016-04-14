@@ -2,8 +2,9 @@ var passport = require('passport'),
 	url = require('url'),
 	TwitterStrategy = require('passport-twitter').Strategy,
 	config = require('../config'),
-	users = require('../../app/controllers/users.server.controller');
-
+//	users = require('../../app/controllers/users.server.controller');
+        users = require('../../app/controllers/memberprofiles.server.controller');
+        
 module.exports = function() {
 	passport.use(new TwitterStrategy({
 		consumerKey: config.twitter.clientID,
@@ -16,8 +17,8 @@ module.exports = function() {
 			providerData.token = token;
 			providerData.tokenSecret = tokenSecret;
 			var providerUserProfile = {
-				name: profile.displayName,
-				username: profile.username,
+				FirstName: profile.displayName,
+				LoginName: profile.username,
 				provider: 'twitter',
 				providerId: profile.id,
 				providerData: providerData

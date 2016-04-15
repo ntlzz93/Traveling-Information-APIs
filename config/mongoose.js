@@ -6,6 +6,7 @@ module.exports = function() {
 
 //	require('../app/models/user.server.model');
         require('../app/models/memberprofile.server.model');
-        
+        require('../app/models/post.server.model');
+         
 	return db;
 };

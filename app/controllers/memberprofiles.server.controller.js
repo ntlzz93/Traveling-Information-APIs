@@ -84,8 +84,8 @@ exports.logout = function(req, res) {
 
 exports.saveOAuthUserProfile = function(req, profile, done) {
 	MemberProfile.findOne({
-			Provider: profile.provider,
-			ProviderId: profile.providerId
+			Provider: profile.Provider,
+			ProviderId: profile.ProviderId
 		},
 		function(err, user) {
 			if (err) {
@@ -93,14 +93,14 @@ exports.saveOAuthUserProfile = function(req, profile, done) {
 			}
 			else {
 				if (!user) {
-					var possibleUsername = profile.LoginName || ((profile.emails[0].value) ? profile.emails[0].value.split('@')[0] : '');
+					var possibleUsername = profile.LoginName || ((profile.ProviderData.email) ? profile.ProviderData.email.split('@')[0] : '');
 					MemberProfile.findUniqueUsername(possibleUsername, null, function(availableUsername) {
 						profile.LoginName = availableUsername;
 						user = new MemberProfile(profile);
-                                               console.log(user);
+
 						user.save(function(err) {
 							if (err) {
-								var message = _this.getErrorMessage(err);
+								var message = this.getErrorMessage(err);
 								req.flash('error', message);
 								return req.redirect('/register');
 							}

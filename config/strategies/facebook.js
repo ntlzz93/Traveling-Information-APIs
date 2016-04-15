@@ -10,23 +10,23 @@ module.exports = function() {
 		clientID: config.facebook.clientID,
 		clientSecret: config.facebook.clientSecret,
 		callbackURL: config.facebook.callbackURL,
+                profileFields: ['id', 'displayName', 'photos', 'email'],
 		passReqToCallback: true
 	},
 	function(req, accessToken, refreshToken, profile, done) {
 		var providerData = profile._json;
 		providerData.accessToken = accessToken;
 		providerData.refreshToken = refreshToken;
-                
+
 		var providerUserProfile = {
-			FirstName: profile.name.familyName,
-                        LastName: profile.name.givenName,
-			Email: profile.emails.value,
-                        AvatarImageURL: profile.photos.value,
+                        LoginName : profile.username || null, 
+                        Email : profile._json.email,
+                        AvatarImageURL : profile.photos[0].value,
+                        Role : 0,
 			Provider: 'facebook',
                         ProviderId: profile.id,
 			ProviderData: providerData
 		};
-
 		users.saveOAuthUserProfile(req, providerUserProfile, done);
 	}));
 };

@@ -64,7 +64,11 @@ exports.register = function (req, res, next) {
             req.login(user, function (err) {
                 if (err)
                     return next(err);
-
+                var data = {
+                    message: "register successfullly",
+                    status: 1
+                };
+                res.json(data);
                 return res.redirect('/');
             });
         });
@@ -87,10 +91,12 @@ exports.saveOAuthUserProfile = function (req, profile, done) {
                 if (err) {
                     return done(err);
                 } else {
+                    console.log(profile);
                     if (!user) {
-                        var possibleUsername = profile.LoginName || ((profile.ProviderData.email) ? profile.ProviderData.email.split('@')[0] : '');
+                        var possibleUsername = profile.FirstName || ((profile.ProviderData.email) ? profile.ProviderData.email.split('@')[0] : '');
                         MemberProfile.findUniqueUsername(possibleUsername, null, function (availableUsername) {
-                            profile.LoginName = availableUsername;
+                            profile.FirstName = availableUsername;
+                            profile.accessToken = profile.ProviderData.accessToken;
                             user = new MemberProfile(profile);
 
                             user.save(function (err) {

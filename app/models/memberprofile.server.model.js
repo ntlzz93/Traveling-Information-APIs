@@ -27,6 +27,7 @@ var MemberProfileSchema = new Schema({
     Provider : String,
     ProviderId : String,
     Role : Number,
+    accessToken : String,
     providerData: {},
     todos: {}
 });

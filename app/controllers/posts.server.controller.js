@@ -173,35 +173,6 @@ exports.like = function (req, res, next) {
                     post.save(data);
                     next();
                 }
-//                for (var i = 0; i < numberPeopleLike; i++) {
-//                    if (post.Like.PeopleLike[i].id === currentUserID && post.Like.PeopleLike[i].flag === true) {
-//                        // user Liked
-//                        post.Like.NumberLike -= 1;
-//                        post.Like.PeopleLike[i].flag = false;
-//                        var data = {
-//                            value: post,
-//                            message: "Undo Like",
-//                            status: 0
-//                        };
-//
-//                        res.json(data);
-//                        post.save(data);
-//                        next();
-//                    } else {
-//                        // user don't like
-//                        post.Like.NumberLike += 1;
-//                        post.Like.PeopleLike.push({id: currentUserID, flag: true});
-//                        var data = {
-//                            value: post,
-//                            message: "Like",
-//                            status: 1
-//                        };
-//                        res.json(data);
-//                        post.save(data);
-//                        next();
-//                    }
-//
-//                }
             }
 
         }
@@ -209,5 +180,67 @@ exports.like = function (req, res, next) {
 };
 
 exports.subcribe = function (req, res, next) {
+    PostModel.findByIdAndUpdate(req.params.postIdInterest, req.body, {new : true}, function (err, post) {
+        if (err) {
+            console.log(this.getErrorMessage(err));
+            return next(err);
+        } else {
+            var numberPeopleInterest = post.Interested.PeopleInterest.length;
+            var currentUserID = req.body.CurrentUserID;
+            if (numberPeopleInterest === 0) {
+                post.Interested.NumberInterest = 0;
+                post.Interested.PeopleInterest.push({id: currentUserID, flag: true});
+                post.Interested.NumberInterest += 1;
+                var data = {
+                    value: post,
+                    message: "Interested",
+                    status: 1
+                };
+                res.json(data);
+                post.save(data);
+                next();
+            } else {
+                // post wishlist != null
+                // 
+                // 
+                var existID = false;
+                var userId = null;
+                var indexToRemove = 0;
+                var numberToRemove = 1;
 
+                for (var i = 0; i < numberPeopleInterest; i++) {
+                    if (post.Interested.PeopleInterest[i].id === currentUserID) {
+                        existID = true;
+                        userId = currentUserID;
+                        indexToRemove = i;
+                    }
+                }
+                if (existID !== true) {
+                    // never exist
+                    post.Interested.PeopleInterest.push({id: currentUserID, flag: true});
+                    post.Interested.NumberInterest += 1;
+                    var data = {
+                        value: post,
+                        message: "Interested",
+                        status: 1
+                    };
+                    res.json(data);
+                    post.save(data);
+                    next();
+                } else {
+                    post.Interested.PeopleInterest.splice(indexToRemove, numberToRemove);
+                    post.Interested.NumberInterest -= 1;
+                    var data = {
+                        value: post,
+                        message: "Undo Interested",
+                        status: 0
+                    };
+                    res.json(data);
+                    post.save(data);
+                    next();
+                }
+            }
+
+        }
+    });
 };

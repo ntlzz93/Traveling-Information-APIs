@@ -10,6 +10,8 @@ module.exports = function (app) {
 
     app.route('/post/like/:postIdLike').put(postController.like);
 
+    app.route('/post/interest/:postIdInterest').put(postController.subcribe);
+
     app.param('postId', postController.postByID);
 
     app.param('memberId', postController.postByIdMemberProfile);

@@ -11,9 +11,12 @@ var PostSchema = new Schema({
     Latitude: String,
     Like: {
         NumberLike: Number,
-        PeopleLike: [{id : String, flag : Boolean}]
+        PeopleLike: [{id: String, flag: Boolean}]
     },
-    Interested: Number,
+    Interested:{
+        NumberInterest : Number,
+        PeopleInterest : [{id: String, flag : Boolean}]
+    },
     Status: Number
 
 });

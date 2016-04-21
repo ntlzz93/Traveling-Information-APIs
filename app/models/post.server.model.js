@@ -1,18 +1,21 @@
 var mongoose = require('mongoose'),
-	crypto = require('crypto'),
-	Schema = mongoose.Schema;
+        crypto = require('crypto'),
+        Schema = mongoose.Schema;
 
 var PostSchema = new Schema({
-    IDMemberProfile : String,
-    Title : String,
-    Content : String,
-    PostTime : Date,
-    Longitude : String,
+    IDMemberProfile: String,
+    Title: String,
+    Content: String,
+    PostTime: {type: Date, default: Date.now},
+    Longitude: String,
     Latitude: String,
-    Like : Number,
-    Interested : Number,
-    Status : Number
-    
+    Like: {
+        NumberLike: Number,
+        PeopleLike: [{id : String, flag : Boolean}]
+    },
+    Interested: Number,
+    Status: Number
+
 });
 
 

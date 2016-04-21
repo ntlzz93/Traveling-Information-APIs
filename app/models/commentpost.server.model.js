@@ -6,7 +6,7 @@ var CommentPostSchema = new Schema({
     IDPost : String,
     IDMemberProfile : String,
     Content : String,
-    CommentPostTime: Date
+    CommentPostTime: { type: Date, default: Date.now }
     
 });
 

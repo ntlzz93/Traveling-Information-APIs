@@ -3,10 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/loint/Desktop/TravelingCity-Apis/app/controllers/commentposts.server.controller.js</file>
-            <file>file:/home/loint/Desktop/TravelingCity-Apis/app/controllers/memberprofiles.server.controller.js</file>
-            <file>file:/home/loint/Desktop/TravelingCity-Apis/app/routes/postdetails.server.routes.js</file>
-            <file>file:/home/loint/Desktop/TravelingCity-Apis/app/controllers/postdetails.server.controller.js</file>
+            <file>file:/home/loint/Desktop/TravelingCity-Apis/app/models/post.server.model.js</file>
+            <file>file:/home/loint/Desktop/TravelingCity-Apis/app/routes/posts.server.routes.js</file>
             <file>file:/home/loint/Desktop/TravelingCity-Apis/app/controllers/posts.server.controller.js</file>
         </group>
     </open-files>

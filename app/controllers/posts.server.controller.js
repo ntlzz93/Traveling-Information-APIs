@@ -1,7 +1,6 @@
 
 var PostModel = require('mongoose').model('Post'),
         passport = require('passport');
-
 var getErrorMessage = function (err) {
     var message = '';
     if (err.code) {
@@ -15,7 +14,6 @@ var getErrorMessage = function (err) {
 
     return message;
 };
-
 exports.create = function (req, res, next) {
     var post = new PostModel(req.body);
     post.save(function (err) {
@@ -23,11 +21,15 @@ exports.create = function (req, res, next) {
             console.log(this.getErrorMessage(err));
             return next(err);
         } else {
-            res.json(post);
+            var data = {
+                value: post,
+                message: "created successfully",
+                status: 1
+            };
+            res.json(data);
         }
     });
 };
-
 /* List post accepted */
 exports.list = function (req, res, next) {
     PostModel.find({Status: 1}, function (err, posts) {
@@ -37,32 +39,28 @@ exports.list = function (req, res, next) {
         } else {
             var data = {
                 value: posts,
-                message: "created successfully",
+                message: "successfully",
                 status: 1
             };
             res.json(data);
         }
     });
 };
-
-
 exports.read = function (req, res) {
     var data = {
         value: req.post,
-        message: "created successfully",
+        message: "successfully",
         status: 1
     };
     res.json(data);
 };
-
-/* TimeLine */
 exports.postByID = function (req, res, next, id) {
     PostModel.findOne({
         _id: id
     },
             function (err, post) {
                 if (err) {
-                    console.log(this.getErrorMessage(err));
+
                     return next(err);
                 } else {
                     req.post = post;
@@ -71,7 +69,18 @@ exports.postByID = function (req, res, next, id) {
             }
     );
 };
-
+/* TimeLine */
+exports.postByIdMemberProfile = function (req, res, next, IdMemberProfile) {
+    PostModel.findOne({IDMemberProfile: IdMemberProfile}, function (err, post) {
+        if (err) {
+            console.log(this.getErrorMessage(err));
+            return next(err);
+        } else {
+            req.post = post;
+            next();
+        }
+    });
+};
 exports.update = function (req, res, next) {
     PostModel.findByIdAndUpdate(req.post.id, req.body, function (err, post) {
         if (err) {
@@ -87,7 +96,6 @@ exports.update = function (req, res, next) {
         }
     });
 };
-
 exports.delete = function (req, res, next) {
     req.post.remove(function (err) {
         if (err) {
@@ -104,4 +112,102 @@ exports.delete = function (req, res, next) {
     });
 };
 
+exports.like = function (req, res, next) {
+    PostModel.findByIdAndUpdate(req.params.postIdLike, req.body, {new : true}, function (err, post) {
+        if (err) {
+            console.log(this.getErrorMessage(err));
+            return next(err);
+        } else {
+            var numberPeopleLike = post.Like.PeopleLike.length;
+            var currentUserID = req.body.CurrentUserID;
+//            console.log(numberPeopleLike);
+            if (numberPeopleLike === 0) {
+                post.Like.NumberLike = 0;
+                post.Like.PeopleLike.push({id: currentUserID, flag: true});
+                post.Like.NumberLike += 1;
+                var data = {
+                    value: post,
+                    message: "Like",
+                    status: 1
+                };
+                res.json(data);
+                post.save(data);
+                next();
+            } else {
+                // post like != null
+                // 
+                // 
+                var existID = false;
+                var userId = null;
+                var indexToRemove = 0;
+                var numberToRemove = 1;
 
+                for (var i = 0; i < numberPeopleLike; i++) {
+                    if (post.Like.PeopleLike[i].id === currentUserID) {
+                        existID = true;
+                        userId = currentUserID;
+                        indexToRemove = i;
+                    }
+                }
+                if (existID !== true) {
+                    // never exist
+                    post.Like.PeopleLike.push({id: currentUserID, flag: true});
+                    post.Like.NumberLike += 1;
+                    var data = {
+                        value: post,
+                        message: "Like",
+                        status: 1
+                    };
+                    res.json(data);
+                    post.save(data);
+                    next();
+                } else {
+                    post.Like.PeopleLike.splice(indexToRemove, numberToRemove);
+                    post.Like.NumberLike -= 1;
+                    var data = {
+                        value: post,
+                        message: "Undo Like",
+                        status: 0
+                    };
+                    res.json(data);
+                    post.save(data);
+                    next();
+                }
+//                for (var i = 0; i < numberPeopleLike; i++) {
+//                    if (post.Like.PeopleLike[i].id === currentUserID && post.Like.PeopleLike[i].flag === true) {
+//                        // user Liked
+//                        post.Like.NumberLike -= 1;
+//                        post.Like.PeopleLike[i].flag = false;
+//                        var data = {
+//                            value: post,
+//                            message: "Undo Like",
+//                            status: 0
+//                        };
+//
+//                        res.json(data);
+//                        post.save(data);
+//                        next();
+//                    } else {
+//                        // user don't like
+//                        post.Like.NumberLike += 1;
+//                        post.Like.PeopleLike.push({id: currentUserID, flag: true});
+//                        var data = {
+//                            value: post,
+//                            message: "Like",
+//                            status: 1
+//                        };
+//                        res.json(data);
+//                        post.save(data);
+//                        next();
+//                    }
+//
+//                }
+            }
+
+        }
+    });
+};
+
+exports.subcribe = function (req, res, next) {
+
+};

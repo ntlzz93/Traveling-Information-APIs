@@ -7,15 +7,21 @@ var PostSchema = new Schema({
     Title: String,
     Content: String,
     PostTime: {type: Date, default: Date.now},
-    Longitude: String,
-    Latitude: String,
+    Location: {
+        Longitude: String,
+        Latitude: String
+    },
     Like: {
         NumberLike: Number,
         PeopleLike: [{id: String, flag: Boolean}]
     },
-    Interested:{
-        NumberInterest : Number,
-        PeopleInterest : [{id: String, flag : Boolean}]
+    Comment: {
+        NumberComment: Number,
+        CommentContent: [{IdUserComment: String, Content: String}]
+    },
+    Interested: {
+        NumberInterest: Number,
+        PeopleInterest: [{id: String, flag: Boolean}]
     },
     Status: Number
 

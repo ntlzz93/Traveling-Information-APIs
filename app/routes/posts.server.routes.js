@@ -11,6 +11,10 @@ module.exports = function (app) {
     app.route('/post/like/:postIdLike').put(postController.like);
 
     app.route('/post/interest/:postIdInterest').put(postController.subcribe);
+    
+    app.route('/post/findByKeyWord/:location').get(postController.FindByKeyWord);
+    
+    app.route('/post/comment/:postIdComment').put(postController.comment);
 
     app.param('postId', postController.postByID);
 

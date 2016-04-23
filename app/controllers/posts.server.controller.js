@@ -244,3 +244,51 @@ exports.subcribe = function (req, res, next) {
         }
     });
 };
+
+exports.comment = function (req, res, next) {
+    PostModel.findByIdAndUpdate(req.params.postIdComment, res.body, function (err, post) {
+        if (err) {
+            return next(err);
+        } else {
+            var userComment = req.body.IdUserComment;
+            var ContentComment = req.body.Content;
+
+            post.Comment.CommentContent.push({IdUserComment: userComment, Content: ContentComment});
+            post.Comment.NumberComment += 1;
+            var data = {
+                value: post,
+                message: "Comment",
+                status: 1
+            };
+            res.json(data);
+            post.save(data);
+            next();
+        }
+    });
+};
+
+exports.FindByKeyWord = function (req, res, next) {
+    var location = req.params.location;
+    var str = location.split(",");
+    var Longitude = str[0];
+    var Latitude = str[1];
+
+    PostModel.find({
+        "Location.Longitude": Longitude,
+        "Location.Latitude": Latitude
+    },
+            function (err, result) {
+                if (err) {
+                    return next(err);
+                } else {
+                    var data = {
+                        value: result,
+                        message: "Search by key word",
+                        status: 1
+                    };
+                    res.json(data);
+                }
+            }
+    );
+
+};

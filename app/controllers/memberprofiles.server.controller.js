@@ -208,4 +208,13 @@ exports.delete = function (req, res, next) {
     });
 };
 
-
+// xem danh sach bai viet da quan tam
+//exports.ListPostInterest = function (req, res, next) {
+//    MemberProfile.find({
+//       
+//    }
+//
+//    , function (err, post) {
+//
+//    });
+//};

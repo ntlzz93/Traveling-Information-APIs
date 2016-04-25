@@ -1,4 +1,4 @@
-process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+process.env.NODE_ENV = process.env.NODE_ENV || 'production';
 
 var config = require('./config/config'),
 	mongoose = require('./config/mongoose'),
@@ -12,4 +12,5 @@ var db = mongoose(),
 app.listen(config.port);
 
 module.exports = app;
-console.log(process.env.NODE_ENV + ' server running at http://localhost:' + config.port);
+// console.log(process.env.NODE_ENV + ' server running at http://localhost:' + config.port);
+console.log(process.env.NODE_ENV + ' server running at https://travelincity-api.rhcloud.com/' + config.port);

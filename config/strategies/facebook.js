@@ -19,7 +19,7 @@ module.exports = function() {
 		providerData.refreshToken = refreshToken;
 
 		var providerUserProfile = {
-                        LoginName : profile.username || null, 
+                        LoginName : profile.username || null,
                         Email : profile._json.email,
                         AvatarImageURL : profile.photos[0].value,
                         Role : 0,

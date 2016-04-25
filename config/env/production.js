@@ -1,6 +1,7 @@
 var port = 47345;
-
+var host = "103.237.98.230";
 module.exports = {
+	host:host,
 	port: port,
 	db: 'mongodb://ntlzz:123456@ds047345.mlab.com:47345/travincity',
 	facebook: {

@@ -18,7 +18,7 @@ exports.create = function (req, res, next) {
     var post = new PostModel(req.body);
     post.save(function (err) {
         if (err) {
-            console.log(this.getErrorMessage(err));
+            console.log(getErrorMessage(err));
             return next(err);
         } else {
             var data = {
@@ -34,7 +34,7 @@ exports.create = function (req, res, next) {
 exports.list = function (req, res, next) {
     PostModel.find({Status: 1}, function (err, posts) {
         if (err) {
-            console.log(this.getErrorMessage(err));
+            console.log(getErrorMessage(err));
             return next(err);
         } else {
             var data = {
@@ -73,7 +73,7 @@ exports.postByID = function (req, res, next, id) {
 exports.postByIdMemberProfile = function (req, res, next, IdMemberProfile) {
     PostModel.findOne({IDMemberProfile: IdMemberProfile}, function (err, post) {
         if (err) {
-            console.log(this.getErrorMessage(err));
+            console.log(getErrorMessage(err));
             return next(err);
         } else {
             req.post = post;
@@ -84,7 +84,7 @@ exports.postByIdMemberProfile = function (req, res, next, IdMemberProfile) {
 exports.update = function (req, res, next) {
     PostModel.findByIdAndUpdate(req.post.id, req.body, function (err, post) {
         if (err) {
-            console.log(this.getErrorMessage(err));
+            console.log(getErrorMessage(err));
             return next(err);
         } else {
             var data = {
@@ -99,7 +99,7 @@ exports.update = function (req, res, next) {
 exports.delete = function (req, res, next) {
     req.post.remove(function (err) {
         if (err) {
-            console.log(this.getErrorMessage(err));
+            console.log(getErrorMessage(err));
             return next(err);
         } else {
             var data = {
@@ -115,7 +115,7 @@ exports.delete = function (req, res, next) {
 exports.like = function (req, res, next) {
     PostModel.findByIdAndUpdate(req.params.postIdLike, req.body, {new : true}, function (err, post) {
         if (err) {
-            console.log(this.getErrorMessage(err));
+            console.log(getErrorMessage(err));
             return next(err);
         } else {
             var numberPeopleLike = post.Like.PeopleLike.length;
@@ -182,7 +182,7 @@ exports.like = function (req, res, next) {
 exports.subcribe = function (req, res, next) {
     PostModel.findByIdAndUpdate(req.params.postIdInterest, req.body, {new : true}, function (err, post) {
         if (err) {
-            console.log(this.getErrorMessage(err));
+            console.log(getErrorMessage(err));
             return next(err);
         } else {
             var numberPeopleInterest = post.Interested.PeopleInterest.length;

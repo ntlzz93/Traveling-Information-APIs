@@ -1,13 +1,13 @@
-var port = 47345;
+var port = 80;
 var host = "103.237.98.230";
 module.exports = {
 	host:host,
 	port: port,
 	db: 'mongodb://ntlzz:123456@ds047345.mlab.com:47345/travincity',
 	facebook: {
-		clientID: '100744463671984',
-		clientSecret: 'b11d45470a90e74811750b7245deba63',
-		callbackURL: 'https://floating-brushlands-27811.herokuapp.com/'+ port +'/oauth/facebook/callback'
+		clientID: '249534838730582',
+		clientSecret: '09ada79044254f7136bd86e8c364beb2',
+		callbackURL: 'http://103.237.98.230/oauth/facebook/callback'
 	},
 	twitter: {
 		clientID: 'yFntGKkvMZkDKL47XGtzLNdRA',

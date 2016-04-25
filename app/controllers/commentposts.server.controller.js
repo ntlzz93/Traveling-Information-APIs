@@ -20,7 +20,7 @@ exports.create = function (req, res, next) {
     var commentpost = new CommentPostModel(req.body);
     commentpost.save(function (err) {
         if (err) {
-            console.log(this.getErrorMessage(err));
+            console.log(getErrorMessage(err));
             return next(err);
         } else {
             var data = {
@@ -37,7 +37,7 @@ exports.create = function (req, res, next) {
 exports.list = function (req, res, next) {
     CommentPostModel.find({}, function (err, commentposts) {
         if (err) {
-            console.log(this.getErrorMessage(err));
+            console.log(getErrorMessage(err));
             return next(err);
         } else {
             var data = {
@@ -67,7 +67,7 @@ exports.commentpostByID = function (req, res, next, id) {
     },
             function (err, commentpost) {
                 if (err) {
-                    console.log(this.getErrorMessage(err));
+                    console.log(getErrorMessage(err));
                     return next(err);
                 } else {
                     req.commentpost = commentpost;
@@ -93,7 +93,7 @@ exports.commentpostByIdPost = function (req, res, next) {
     },
             function (err, commentpost) {
                 if (err) {
-                    console.log(this.getErrorMessage(err));
+                    console.log(getErrorMessage(err));
                     return next(err);
                 } else {
                     req.commentpost = commentpost;
@@ -117,7 +117,7 @@ exports.commentpostByIdMemeberProfile = function (req, res, next) {
     },
             function (err, commentpost) {
                 if (err) {
-                    console.log(this.getErrorMessage(err));
+                    console.log(getErrorMessage(err));
                     return next(err);
                 } else {
                     req.commentpost = commentpost;
@@ -130,7 +130,7 @@ exports.commentpostByIdMemeberProfile = function (req, res, next) {
 exports.update = function (req, res, next) {
     CommentPostModel.findByIdAndUpdate(req.params.commentpostId, req.body, function (err, commentpost) {
         if (err) {
-            console.log(this.getErrorMessage(err));
+            console.log(getErrorMessage(err));
             return next(err);
         } else {
             var data = {
@@ -145,7 +145,7 @@ exports.update = function (req, res, next) {
 exports.delete = function (req, res, next) {
     req.commentpost.remove(function (err) {
         if (err) {
-            console.log(this.getErrorMessage(err));
+            console.log(getErrorMessage(err));
             return next(err);
         } else {
             var data = {

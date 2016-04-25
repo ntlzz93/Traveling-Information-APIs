@@ -101,7 +101,7 @@ exports.saveOAuthUserProfile = function (req, profile, done) {
 
                             user.save(function (err) {
                                 if (err) {
-                                    var message = this.getErrorMessage(err);
+                                    var message = getErrorMessage(err);
                                     req.flash('error', message);
                                     return req.redirect('/register');
                                 }
@@ -123,7 +123,7 @@ exports.create = function (req, res, next) {
     var user = new MemberProfile(req.body);
     user.save(function (err) {
         if (err) {
-            console.log(this.getErrorMessage(err));
+            console.log(getErrorMessage(err));
             return next(err);
         } else {
             var data = {
@@ -166,7 +166,7 @@ exports.userByID = function (req, res, next, id) {
     },
             function (err, user) {
                 if (err) {
-                    console.log(this.getErrorMessage(err));
+                    console.log(getErrorMessage(err));
                     return next(err);
                 } else {
                     req.user = user;
@@ -179,7 +179,7 @@ exports.userByID = function (req, res, next, id) {
 exports.update = function (req, res, next) {
     MemberProfile.findByIdAndUpdate(req.user.id, req.body, function (err, user) {
         if (err) {
-            console.log(this.getErrorMessage(err));
+            console.log(getErrorMessage(err));
             return next(err);
         } else {
             var data = {
@@ -195,7 +195,7 @@ exports.update = function (req, res, next) {
 exports.delete = function (req, res, next) {
     req.user.remove(function (err) {
         if (err) {
-            console.log(this.getErrorMessage(err));
+            console.log(getErrorMessage(err));
             return next(err);
         } else {
             var data = {

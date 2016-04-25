@@ -19,7 +19,7 @@ exports.create = function (req, res, next) {
     var postdetail = new PostDetailModel(req.body);
     postdetail.save(function (err) {
         if (err) {
-            console.log(this.getErrorMessage(err));
+            console.log(getErrorMessage(err));
             return next(err);
         } else {
             var data = {
@@ -36,7 +36,7 @@ exports.create = function (req, res, next) {
 exports.list = function (req, res, next) {
     PostDetailModel.find({}, function (err, postdetail) {
         if (err) {
-            console.log(this.getErrorMessage(err));
+            console.log(getErrorMessage(err));
             return next(err);
         } else {
             var data = {
@@ -66,7 +66,7 @@ exports.postDetailByID = function (req, res, next, id) {
     },
             function (err, postdetail) {
                 if (err) {
-                    console.log(this.getErrorMessage(err));
+                    console.log(getErrorMessage(err));
                     return next(err);
                 } else {
                     req.postdetail = postdetail;
@@ -80,7 +80,7 @@ exports.postDetailByID = function (req, res, next, id) {
 exports.postDetailByIDPost = function (req, res, next) {
     PostDetailModel.find({IDPost: req.params.postId}, function (err, postdetail) {
         if (err) {
-            console.log(this.getErrorMessage(err));
+            console.log(getErrorMessage(err));
             return next(err);
         } else {
             res.json(postdetail);
@@ -91,7 +91,7 @@ exports.postDetailByIDPost = function (req, res, next) {
 exports.update = function (req, res, next) {
     PostDetailModel.findByIdAndUpdate(req.params.postdetailId, req.body, function (err, postdetail) {
         if (err) {
-            console.log(this.getErrorMessage(err));
+            console.log(getErrorMessage(err));
             return next(err);
         } else {
             var data = {
@@ -107,7 +107,7 @@ exports.update = function (req, res, next) {
 exports.delete = function (req, res, next) {
     req.postdetail.remove(function (err) {
         if (err) {
-            console.log(this.getErrorMessage(err));
+            console.log(getErrorMessage(err));
             return next(err);
         } else {
             var data = {

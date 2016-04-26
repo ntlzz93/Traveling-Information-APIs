@@ -7,7 +7,7 @@ Nếu thành công nó sẽ trả về 1 chuỗi json của đối tượng vừ
 
 *Thực hiện* :
 
-URL = [](http://103.237.98.230/login)
+URL = [http://103.237.98.230/login](http://103.237.98.230/login)
 
 Method = POST
 

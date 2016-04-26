@@ -6,6 +6,6 @@ Chức năng này cho phép đăng nhập tài khoản với tài khoản facebo
 
 *Thực hiện* :
 
-URL = [](http://103.237.98.230/register/oauth/facebook)
+URL = [http://103.237.98.230/register/oauth/facebook](http://103.237.98.230/register/oauth/facebook)
 
 METHOD = GET

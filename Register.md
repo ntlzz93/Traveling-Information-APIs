@@ -8,7 +8,7 @@ Chức năng này cho phép đăng ký tài khoản theo cách bình thường v
 
 *Thực hiện*:
 
-URL = [](http://103.237.98.230/register)
+URL = [http://103.237.98.230/register](http://103.237.98.230/register)
 METHOD = POST
 
 dataType = json

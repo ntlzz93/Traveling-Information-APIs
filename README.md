@@ -8,11 +8,10 @@ Technology use: Nodejs , ExpressJs, Mongodb
 
 ## API Reference
 1. [Register](https://github.com/ntlzz93/Traveling-Information-APIs/blob/master/Register.md)
-  * Normal Account
-  * Facebook account 
+  * [Normal Account](https://github.com/ntlzz93/Traveling-Information-APIs/blob/master/Register.md)
 2. Login
-  * Normal Account
-  * Facebook account 
+  * [Normal Account](https://github.com/ntlzz93/Traveling-Information-APIs/blob/master/Login-Normal.md)
+  * [Facebook account](https://github.com/ntlzz93/Traveling-Information-APIs/blob/master/Login-Facebook.md) 
 
 
 

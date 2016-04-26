@@ -2,7 +2,26 @@
 
 ### Register by normal account
 
+*Mô tả*: 
 
-### Register by facebook account
+Chức năng này cho phép đăng ký tài khoản theo cách bình thường với username, password, email và name. Thực hiên phương thức post theo url /register. Nếu thành công sẽ trả về 1 chuỗi json của đối tượng vừa đăng ký, message thông báo và status = 1.
+
+*Thực hiện*:
+
+URL = [](http://103.237.98.230/register)
+METHOD = POST
+
+dataType = json
+```
+{
+	username : String,
+	password : String,
+	email : String,
+	name : String
+}
+```
+Success
+status = 1;
+
 
 

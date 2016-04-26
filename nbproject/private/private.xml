@@ -8,8 +8,12 @@
             <file>file:/home/loint/Desktop/TravelingCity-Apis/config/strategies/local.js</file>
             <file>file:/home/loint/Desktop/TravelingCity-Apis/config/env/production.js</file>
             <file>file:/home/loint/Desktop/TravelingCity-Apis/config/express.js</file>
+            <file>file:/home/loint/Desktop/TravelingCity-Apis/app/routes/posts.server.routes.js</file>
             <file>file:/home/loint/Desktop/TravelingCity-Apis/config/mongoose.js</file>
+            <file>file:/home/loint/Desktop/TravelingCity-Apis/server.js</file>
+            <file>file:/home/loint/Desktop/TravelingCity-Apis/app/controllers/posts.server.controller.js</file>
             <file>file:/home/loint/Desktop/TravelingCity-Apis/config/strategies/facebook.js</file>
+            <file>file:/home/loint/Desktop/TravelingCity-Apis/config/env/development.js</file>
         </group>
     </open-files>
 </project-private>

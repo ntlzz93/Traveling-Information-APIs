@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="bbbb6138-1cfd-4cb9-8b12-ab483bd9c6cc" name="loint" url="http://103.237.98.230">
+        <fileTransfer host="103.237.98.230" port="22" rootFolder="/root/project" accessType="SFTP" password="dfc6dfc5dfc3df9bdf98df99df8bdfea" username="root">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

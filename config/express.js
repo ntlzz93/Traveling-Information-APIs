@@ -34,7 +34,8 @@ module.exports = function() {
         require('../app/routes/postdetails.server.routes.js')(app);
         require('../app/routes/commentposts.server.routes.js')(app);
         
-	app.use(express.static('./public'));
+	// app.use(express.static('./public'));
+	app.use(express.static('public'));
 
 	return app;
 };

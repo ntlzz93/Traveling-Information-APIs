@@ -12,7 +12,7 @@ module.exports = function (app) {
 
     app.route('/post/interest/:postIdInterest').put(postController.subcribe);
     
-    app.route('/post/findByKeyWord/:location').get(postController.FindByKeyWord);
+    app.route('/post/findByKeyWord/:input').get(postController.FindByKeyWord);
     
     app.route('/post/comment/:postIdComment').put(postController.comment);
 

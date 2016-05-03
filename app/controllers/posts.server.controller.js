@@ -1,6 +1,7 @@
 
 var PostModel = require('mongoose').model('Post'),
         passport = require('passport');
+var request = require("request");
 var getErrorMessage = function (err) {
     var message = '';
     if (err.code) {
@@ -268,53 +269,67 @@ exports.comment = function (req, res, next) {
 };
 
 exports.FindByKeyWord = function (req, res, next) {
-    // var location = req.params.location;
-    // var str = location.split(",");
-    // var Longitude = str[0];
-    // var Latitude = str[1];
-    //
-    // PostModel.find({
-    //     "Location.Longitude": Longitude,
-    //     "Location.Latitude": Latitude
-    // },
-    //         function (err, result) {
-    //             if (err) {
-    //                 return next(err);
-    //             } else {
-    //                 var data = {
-    //                     value: result,
-    //                     message: "Search by key word",
-    //                     status: 1
-    //                 };
-    //                 res.json(data);
-    //             }
-    //         }
-    // );
 
     var API_KEY = "AIzaSyBNXabrkjbjtTFT03iHZxWpxDeikEGGEKg";
-    var BASE_URL = "https://maps.googleapis.com/maps/api/geocode/json?";
+    var BASE_URL = "https://maps.googleapis.com/maps/api/geocode/json?address=";
 
     var inputSearch = req.params.input;
     var address = inputSearch.toString();
 
     var url = BASE_URL + address + "&key=" + API_KEY;
 
-    var map = new google.maps.Map({
-        zoom: 8,
-        center: {lat: -34.397, lng: 150.644}
-    });
-    var geocoder = new google.maps.Geocoder();
+    request(url, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            var result = body.replace(/(\r\n|\n|\r)/gm,"");
+            result = result.replace(/\\/g, "");
 
-    geocoder.geocode({'address': address}, function(results, status) {
-        if (status === google.maps.GeocoderStatus.OK) {
-            map.setCenter(results[0].geometry.location);
-            var marker = new google.maps.Marker({
-                map: map,
-                position: results[0].geometry.location
-            });
-            res.json(marker);
-        } else {
-            alert('Geocode was not successful for the following reason: ' + status);
+            console.log(result);
+            console.log(typeof(result));
+            result = JSON.parse(result);
+            // var obj = JSON.parse(body);
+            console.log(result);
+            console.log(typeof(result));
+
+            var lat = result.results[0].geometry.location.lat;
+            var lng = result.results[0].geometry.location.lng;
+
+            console.log("lat "+lat);
+            console.log("lng "+lng);
+            PostModel.find({
+                        "Location.Longitude": lng,
+                        "Location.Latitude": lat
+               },
+                       function (err, result) {
+                                if (err) {
+                                        return next(err);
+                                    } else {
+                                        if(result.length !== 0){
+                                            var data = {
+                                                value: result,
+                                                message: "Search by key word",
+                                                status: 1
+                                            };
+                                            res.json(data);
+                                        }
+                                       else{
+                                            var data = {
+                                                message: "null",
+                                                status: 0
+                                            };
+                                            res.json(data);
+                                        }
+                                    }
+                           }
+               );
+
+            // res.json(result);
+        }
+        else {
+            var result = {
+                message: "Can't find",
+                status: 0
+            };
+            res.json(result);
         }
     });
 };

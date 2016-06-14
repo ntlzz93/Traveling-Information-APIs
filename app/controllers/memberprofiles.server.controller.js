@@ -214,7 +214,7 @@ exports.delete = function (req, res, next) {
 
 // Android
 
-// TODO: route to authenticate a user (POST http://localhost:8080/api/authenticate)
+// TODO: route to authenticate a user (POST http://localhost:1337/api/signin)
 
 exports.authenAdnroid = function(req,res){
     console.log(req.body.username);
@@ -242,7 +242,7 @@ exports.authenAdnroid = function(req,res){
                 // if user is found and password is right
                 // create a token
                 var token = jwt.sign(user, 'loint', {
-                    expiresIn: '60' // expires in 30 days
+                    expiresIn: '30d' // expires in 30 days
                 });
 
                 // return the information including token as JSON
@@ -252,6 +252,16 @@ exports.authenAdnroid = function(req,res){
                     user : user,
                     token: token
                 });
+
+                jwt.verify(token, 'loint', function(err, decoded) {
+                    if (err) {
+                        return res.json({ success: false, message: 'Failed to authenticate token.' });
+                    } else {
+                        // if everything is good, save to request for use in other routes
+                        req.decoded = decoded;
+                        console.log(req.decoded._doc);
+                    }
+                });
             }
 
         }
@@ -259,6 +269,7 @@ exports.authenAdnroid = function(req,res){
     });
 }
 
+// TODO: route to register a user (POST http://localhost:1337/api/signup)
 exports.registerAdnroid = function(req,res){
     var userModel = new MemberProfile();
     var message = null;
@@ -267,10 +278,7 @@ exports.registerAdnroid = function(req,res){
     userModel.Password = req.body.password;
     userModel.Email = req.body.email;
 
-
     userModel.save(function(err, user) {
-        user.accessToken = jwt.sign(user, 'loint');
-
             res.json({
                 type: true,
                 data: user,
@@ -279,35 +287,35 @@ exports.registerAdnroid = function(req,res){
 }
 // TODO: route middleware to verify a token
 
-exports.verifyToken = function(req,res,next){
-    // check header or url parameters or post parameters for token
-    var token = req.body.token || req.query.token || req.headers['x-access-token'];
-    console.log(token);
-    // decode token
-    if (token) {
-
-        // verifies secret and checks exp
-        jwt.verify(token, 'loint', function(err, decoded) {
-            if (err) {
-                return res.json({ success: false, message: 'Failed to authenticate token.' });
-            } else {
-                // if everything is good, save to request for use in other routes
-                req.decoded = decoded;
-                next();
-            }
-        });
-
-    } else {
-
-        // if there is no token
-        // return an error
-        return res.status(403).send({
-            success: false,
-            message: 'No token provided.'
-        });
-
-    }
-}
+// var verifyToken = function(req,res,next){
+//     // check header or url parameters or post parameters for token
+//     var token = req.body.token || req.query.token || req.headers['x-access-token'];
+//     console.log(token);
+//     // decode token
+//     if (token) {
+//
+//         // verifies secret and checks exp
+//         jwt.verify(token, 'loint', function(err, decoded) {
+//             if (err) {
+//                 return res.json({ success: false, message: 'Failed to authenticate token.' });
+//             } else {
+//                 // if everything is good, save to request for use in other routes
+//                 req.decoded = decoded;
+//                 next();
+//             }
+//         });
+//
+//     } else {
+//
+//         // if there is no token
+//         // return an error
+//         return res.status(403).send({
+//             success: false,
+//             message: 'No token provided.'
+//         });
+//
+//     }
+// }
 exports.homeAndroid = function(req,res){
     res.json({ message: 'Welcome to the android API on earth!' });
 }

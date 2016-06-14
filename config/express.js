@@ -5,6 +5,7 @@ var config = require('./config'),
 	flash = require('connect-flash'),
 	session = require('express-session');
 var morgan      = require('morgan');
+var jwt = require('jsonwebtoken');
 
 module.exports = function() {
 	var app = express();

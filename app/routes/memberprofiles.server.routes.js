@@ -45,7 +45,8 @@ module.exports = function(app) {
 	}));
 
 	// Android
-	app.route('/api/signin').post(memberprofiles.authenAdnroid).get(memberprofiles.validateAndroid);
+	app.route('/api/signin').post(memberprofiles.authenAdnroid);
 	app.route('/api/users').get(memberprofiles.getUserAndroid);
 	app.route('/api/signup').post(memberprofiles.registerAdnroid);
+
 };

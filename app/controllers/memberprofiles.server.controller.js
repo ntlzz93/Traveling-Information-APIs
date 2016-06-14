@@ -242,7 +242,7 @@ exports.authenAdnroid = function(req,res){
                 // if user is found and password is right
                 // create a token
                 var token = jwt.sign(user, 'loint', {
-                    expiresIn: '24h' // expires in 24 hours
+                    expiresIn: '60' // expires in 30 days
                 });
 
                 // return the information including token as JSON
@@ -266,7 +266,7 @@ exports.registerAdnroid = function(req,res){
     userModel.LoginName = req.body.username;
     userModel.Password = req.body.password;
     userModel.Email = req.body.email;
-    userModel.accessToken = jwt.sign(userModel, 'loint');
+
 
     userModel.save(function(err, user) {
         user.accessToken = jwt.sign(user, 'loint');
@@ -279,15 +279,15 @@ exports.registerAdnroid = function(req,res){
 }
 // TODO: route middleware to verify a token
 
-exports.validateAndroid = function(req,res,next){
+exports.verifyToken = function(req,res,next){
     // check header or url parameters or post parameters for token
     var token = req.body.token || req.query.token || req.headers['x-access-token'];
-
+    console.log(token);
     // decode token
     if (token) {
 
         // verifies secret and checks exp
-        jwt.verify(token, app.get('superSecret'), function(err, decoded) {
+        jwt.verify(token, 'loint', function(err, decoded) {
             if (err) {
                 return res.json({ success: false, message: 'Failed to authenticate token.' });
             } else {
@@ -313,7 +313,8 @@ exports.homeAndroid = function(req,res){
 }
 
 exports.getUserAndroid = function(req,res){
-    MemberProfile.findOne({accessToken:req.query.token}, function(err, users) {
+
+    MemberProfile.find({}, function(err, users) {
         if(err)  throw err;
         res.json(users);
     });

@@ -1,4 +1,4 @@
-# Traveling-Information-APIs
+## Traveling-Information-APIs
 
 ## Synopsis
 There is Apis for website or mobile application about traveling information application. The application could posts an article on favorite destination, view posts that was shared by other users,  to have interesting vacation.
@@ -6,32 +6,41 @@ There is Apis for website or mobile application about traveling information appl
 ## About
 Technology use: Nodejs , ExpressJs, Mongodb
 
-## API Reference
-1. Register
-  ## Web
-  * [Normal Account](https://github.com/ntlzz93/Traveling-Information-APIs/blob/master/Register.md)
-  ## Android 
-  * [Normal Account]()
-2. Login
-  * [Normal Account](https://github.com/ntlzz93/Traveling-Information-APIs/blob/master/Login-Normal.md)
-  * [Facebook account](https://github.com/ntlzz93/Traveling-Information-APIs/blob/master/Login-Facebook.md) 
-3. Logout
-  * [Logout](https://github.com/ntlzz93/Traveling-Information-APIs/blob/master/Logout.md) 	
-4. Home
-  * [Home](https://github.com/ntlzz93/Traveling-Information-APIs/blob/master/Home.md)
-5. TimeLine 
-  * [TimeLine](https://github.com/ntlzz93/Traveling-Information-APIs/blob/master/TimeLine.md)
-6. Post
-  * [Upload Post](https://github.com/ntlzz93/Traveling-Information-APIs/blob/master/Upload-Post.md)
-  * [Like Post](https://github.com/ntlzz93/Traveling-Information-APIs/blob/master/Like-Post.md)
-  * [Comment Post](https://github.com/ntlzz93/Traveling-Information-APIs/blob/master/Comment-Post.md)
-  * [Interested Post](https://github.com/ntlzz93/Traveling-Information-APIs/blob/master/Interest-Post.md)
-7. Find 
-  * [Find Post By KeyWork](https://github.com/ntlzz93/Traveling-Information-APIs/blob/master/Find-Post-KW.md)
-  * [Find Post By GPS](https://github.com/ntlzz93/Traveling-Information-APIs/blob/master/Find-Post-GPS.md)
-  * [Find Post By Town](https://github.com/ntlzz93/Traveling-Information-APIs/blob/master/Find-Post-Town.md)
+## API Reference 
 
-	
+## WEB
+
+1. Register
+  * [Normal Account](https://github.com/ntlzz93/Traveling-Information-APIs/blob/master/Register.md~)
+2. Login
+  * [Normal Account](https://github.com/ntlzz93/Traveling-Information-APIs/blob/master/Login-Normal.md~)
+  * [Facebook account](https://github.com/ntlzz93/Traveling-Information-APIs/blob/master/Login-Facebook.md~) 
+3. Logout
+  * [Logout](https://github.com/ntlzz93/Traveling-Information-APIs/blob/master/Logout.md~) 	
+4. Home
+  * [Home](https://github.com/ntlzz93/Traveling-Information-APIs/blob/master/Home.md~)
+5. TimeLine 
+  * [TimeLine](https://github.com/ntlzz93/Traveling-Information-APIs/blob/master/TimeLine.md~)
+6. Post
+  * [Upload Post](https://github.com/ntlzz93/Traveling-Information-APIs/blob/master/Upload-Post.md~)
+  * [Like Post](https://github.com/ntlzz93/Traveling-Information-APIs/blob/master/Like-Post.md~)
+  * [Comment Post](https://github.com/ntlzz93/Traveling-Information-APIs/blob/master/Comment-Post.md~)
+  * [Interested Post](https://github.com/ntlzz93/Traveling-Information-APIs/blob/master/Interest-Post.md~)
+7. Find 
+  * [Find Post By KeyWork](https://github.com/ntlzz93/Traveling-Information-APIs/blob/master/Find-Post-KW.md~)
+  * [Find Post By GPS](https://github.com/ntlzz93/Traveling-Information-APIs/blob/master/Find-Post-GPS.md~)
+  * [Find Post By Town](https://github.com/ntlzz93/Traveling-Information-APIs/blob/master/Find-Post-Town.md~)
+
+
+## ANDROID
+1. Register
+  * [Normal Account](https://github.com/ntlzz93/Traveling-Information-APIs/blob/master/signupAndroid.md)
+2. Login
+  * [Normal Account](https://github.com/ntlzz93/Traveling-Information-APIs/blob/master/signinAndroid.md)
+3. Get User
+  * [Get User](https://github.com/ntlzz93/Traveling-Information-APIs/blob/master/getUserAdnroid.md)
+  
+  
 ## Tests
 1. Clone project : `git clone https://github.com/ntlzz93/Traveling-Information-APIs`
 2. install nodejs , mongodb on machine

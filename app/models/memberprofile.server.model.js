@@ -34,6 +34,7 @@ var MemberProfileSchema = new Schema({
 
 MemberProfileSchema.pre('save', 
 	function(next) {
+	
 		if (this.Password) {
 			var md5 = crypto.createHash('md5');
 			this.Password = md5.update(this.Password).digest('hex');

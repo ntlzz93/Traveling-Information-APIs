@@ -1,6 +1,9 @@
 var MemberProfile = require('mongoose').model('MemberProfile'),
-        passport = require('passport');
+        passport = require('passport'),
+        crypto = require('crypto');
 
+var jwt = require('jsonwebtoken');
+// var app  = express();
 var getErrorMessage = function (err) {
     var message = '';
     if (err.code) {
@@ -154,7 +157,7 @@ exports.list = function (req, res, next) {
 exports.read = function (req, res) {
     var data = {
         value: req.user,
-        message: "created user successfully",
+        message: "successfully",
         status: 1
     };
     res.json(data);
@@ -208,13 +211,110 @@ exports.delete = function (req, res, next) {
     });
 };
 
-// xem danh sach bai viet da quan tam
-//exports.ListPostInterest = function (req, res, next) {
-//    MemberProfile.find({
-//       
-//    }
-//
-//    , function (err, post) {
-//
-//    });
-//};
+
+// Android
+
+// TODO: route to authenticate a user (POST http://localhost:8080/api/authenticate)
+
+exports.authenAdnroid = function(req,res){
+    console.log(req.body.username);
+    // find the user
+    MemberProfile.findOne({
+        LoginName: req.body.username
+    }, function(err, user) {
+
+        if (err) throw err;
+
+        if (!user) {
+            res.json({ success: false, message: 'Authentication failed. User not found.' });
+        } else if (user) {
+                var password = req.body.password;
+                console.log(password);
+                var md5 = crypto.createHash('md5');
+                password = md5.update(password).digest('hex');
+
+                console.log(password);
+            // check if password matches
+            if (user.Password != password) {
+                res.json({ success: false, message: 'Authentication failed. Wrong password.' });
+            } else {
+
+                // if user is found and password is right
+                // create a token
+                var token = jwt.sign(user, 'loint', {
+                    expiresIn: '24h' // expires in 24 hours
+                });
+
+                // return the information including token as JSON
+                res.json({
+                    success: true,
+                    message: 'Enjoy your token!',
+                    user : user,
+                    token: token
+                });
+            }
+
+        }
+
+    });
+}
+
+exports.registerAdnroid = function(req,res){
+    var userModel = new MemberProfile();
+    var message = null;
+    userModel.Provider = 'local';
+    userModel.LoginName = req.body.username;
+    userModel.Password = req.body.password;
+    userModel.Email = req.body.email;
+    userModel.accessToken = jwt.sign(userModel, 'loint');
+
+    userModel.save(function(err, user) {
+        user.accessToken = jwt.sign(user, 'loint');
+
+            res.json({
+                type: true,
+                data: user,
+            });
+        });
+}
+// TODO: route middleware to verify a token
+
+exports.validateAndroid = function(req,res,next){
+    // check header or url parameters or post parameters for token
+    var token = req.body.token || req.query.token || req.headers['x-access-token'];
+
+    // decode token
+    if (token) {
+
+        // verifies secret and checks exp
+        jwt.verify(token, app.get('superSecret'), function(err, decoded) {
+            if (err) {
+                return res.json({ success: false, message: 'Failed to authenticate token.' });
+            } else {
+                // if everything is good, save to request for use in other routes
+                req.decoded = decoded;
+                next();
+            }
+        });
+
+    } else {
+
+        // if there is no token
+        // return an error
+        return res.status(403).send({
+            success: false,
+            message: 'No token provided.'
+        });
+
+    }
+}
+exports.homeAndroid = function(req,res){
+    res.json({ message: 'Welcome to the android API on earth!' });
+}
+
+exports.getUserAndroid = function(req,res){
+    MemberProfile.findOne({accessToken:req.query.token}, function(err, users) {
+        if(err)  throw err;
+        res.json(users);
+    });
+}

@@ -5,6 +5,9 @@ var config = require('./config/config'),
         express = require('./config/express'),
         passport = require('./config/passport');
 
+var jwt = require('jsonwebtoken');
+
+
 var db = mongoose(),
         app = express(),
         passport = passport();

@@ -4,6 +4,7 @@ var config = require('./config'),
 	passport = require('passport'),
 	flash = require('connect-flash'),
 	session = require('express-session');
+var morgan      = require('morgan');
 
 module.exports = function() {
 	var app = express();
@@ -13,6 +14,8 @@ module.exports = function() {
 	}));
 
 	app.use(bodyParser.json());
+
+	app.use(morgan('dev'));
 
 	app.use(session({
 		saveUninitialized: true,

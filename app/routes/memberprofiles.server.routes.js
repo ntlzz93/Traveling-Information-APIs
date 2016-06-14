@@ -1,6 +1,8 @@
 var memberprofiles = require('../../app/controllers/memberprofiles.server.controller'),
 	passport = require('passport');
 
+var jwt = require('jsonwebtoken');
+
 module.exports = function(app) {
 	app.route('/member').post(memberprofiles.create).get(memberprofiles.list);
 
@@ -41,4 +43,9 @@ module.exports = function(app) {
 		failureRedirect: '/login',
 		successRedirect: '/'
 	}));
+
+	// Android
+	app.route('/api/signin').post(memberprofiles.authenAdnroid).get(memberprofiles.validateAndroid);
+	app.route('/api/users').get(memberprofiles.getUserAndroid);
+	app.route('/api/signup').post(memberprofiles.registerAdnroid);
 };

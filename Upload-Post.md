@@ -9,7 +9,7 @@ Nếu thành công bài viết sẽ được tạo ra , message , status = 1 (js
 *Thực hiện*
 
 url : [http://103.237.98.230/post](http://103.237.98.230/post)
-method : PUT 
+method : POST 
 
 dataType : json 
 ```
@@ -17,6 +17,7 @@ dataType : json
     "IDMemberProfile": String,
     "Title": String,
     "Content": String,
+    "ImageURL":String,
     "Location.Longitude": String,
     "Location.Latitude" : Sting,		
     "Status": Number // = 1 

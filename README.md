@@ -22,7 +22,7 @@ Technology use: Nodejs , ExpressJs, Mongodb
 5. TimeLine 
   * [TimeLine](https://github.com/ntlzz93/Traveling-Information-APIs/blob/master/TimeLine.md~)
 6. Post
-  * [Upload Post](https://github.com/ntlzz93/Traveling-Information-APIs/blob/master/Upload-Post.md~)
+  * [Upload Post](https://github.com/ntlzz93/Traveling-Information-APIs/blob/master/Upload-Post.md)
   * [Like Post](https://github.com/ntlzz93/Traveling-Information-APIs/blob/master/Like-Post.md~)
   * [Comment Post](https://github.com/ntlzz93/Traveling-Information-APIs/blob/master/Comment-Post.md~)
   * [Interested Post](https://github.com/ntlzz93/Traveling-Information-APIs/blob/master/Interest-Post.md~)
